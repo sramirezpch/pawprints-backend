@@ -66,6 +66,8 @@ passport.deserializeUser(async (id: number, done) => {
 
 app.use("/api", authRoutes);
 
+app.use(middleware.sequelizeErrorHandler);
+
 app.get("/", middleware.isAuthenticated, (req, res) => {
   return res.json({ message: "Authenticated!", user: req.user });
 });
