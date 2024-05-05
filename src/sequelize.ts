@@ -1,7 +1,9 @@
 import { Sequelize } from "sequelize";
-import { DATABASE_URI } from "@/utils/env";
+import { DATABASE_URI, NODE_ENV } from "@/utils/env";
 
-export const sequelize = new Sequelize(DATABASE_URI);
+export const sequelize = new Sequelize(DATABASE_URI, {
+  logging: NODE_ENV !== "production",
+});
 
 sequelize
   .authenticate()

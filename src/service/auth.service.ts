@@ -17,6 +17,7 @@ const createUser = async (
 
 const findUserByEmail = (email: string): Promise<UserModel | null> => {
   try {
+    if(!email) throw new Error("Email is empty")
     return User.findOne({ where: { email } });
   } catch (error) {
     throw error;
